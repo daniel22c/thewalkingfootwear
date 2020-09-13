@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Product details</title>
+</head>
+<body>
+<a th:href="@{/products}">Products Page</a>
+<h2>search Products</h2>
+<form th:action="@{/products}">
+	<label for="q">Search</label>
+	<input type="text" name="q" th:value="${q}">
+	<input type="submit" value="search">
+</form>
+<h2>Product details</h1>
+	<table>
+	    <thead>
+	        <tr>
+	            <th> Product ID </th>
+	            <th> Category ID </th>
+	            <th> Product Name </th>
+	        </tr>
+	    </thead>
+	    <tbody>
+        <tr>
+            <td><span th:text="${product.id}"> Product Id </span></td>
+            <td><span th:text="${product.category_id}"> Category Id </span></td>
+            <td><span th:text="${product.name}"> Product Name </span></td>
+        </tr>
+	    </tbody>
+	</table>
+</body>
+</html>

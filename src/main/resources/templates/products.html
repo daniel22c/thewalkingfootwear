@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Display products</title>
+</head>
+<body>
+<h2>search Products</h2>
+<form th:action="@{/products}">
+	<label for="q">Search</label>
+	<input type="text" name="q" th:value="${q}">
+	<input type="submit" value="search">
+</form>
+<h2>categories</h2>
+<ul>
+	<li th:each="category: ${categories}" >
+	<a th:href="@{/products(cid=${category.id})}">
+		<span th:text="${category.name}"></span>
+	</a></li>
+</ul>
+<h2>display products</h1>
+	<table>
+	    <thead>
+	        <tr>
+	            <th> Product ID </th>
+	            <th> Category Id </th>
+	            <th> Product Name </th>
+	        </tr>
+	    </thead>
+	    <tbody>
+		<tr th:if="${products.empty}">
+	            <td colspan="2"> No Products Available </td>
+	        </tr>
+	        <tr th:each="product : ${products}">
+	            <td><span th:text="${product.id}"> Product Id </span></td>
+	            <td><span th:text="${product.category_id}"> Category Id </span></td>
+	            <td> <a th:href="@{/products/prod_details(id=${product.id})}">
+	            <span th:text="${product.name}"> Product Name 
+	             </span> </a> </td>
+	            
+	        </tr>
+	    </tbody>
+	</table>
+</body>
+</html>

@@ -1,0 +1,50 @@
+#Done
+#TODO
+3.3.1 product search
+search by category
+
+* add to Cart page on details page
+add product to a cart
+
+#cart
+cart_id
+user_id
+product_id
+
+
+
+#The database design
+ Customer’s Order & Billing Process (Walk in as well online)
+ Stock management
+ Automation for approximately all transactions
+#DB Entities
+The database design will focus on the following…
+o Products
+ categories, name, product code, price, quantity, sizes(6-8 diff)
+ categories- lady, men, juniors, girls, boys, infants
+ product type - shoes, bags, assessories
+o Customers
+id, name, email, address
+o Orders
+o Employees
+o Expenses
+
+#order table
+order_id
+date
+status
+customer_id
+
+#order_items
+order_id
+product_id
+
+#extra features
+log in and memberships
+add pagination
+
+#order status
+cart->order placed->processing->cancel order->processed(shipped)->return order
+
+#questions
+how to handle concurrency
