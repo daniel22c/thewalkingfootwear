@@ -1,0 +1,23 @@
+# The walking footwear app
+ This is a simulated online shopping mall for a footwear store.
+ 
+# Features
+User and customer implementation
+ * Browse catalog by id, name and category
+ * Details page
+ 
+ #TODO 
+ * Add items to a cart
+ * Create order.
+ * Cancel order
+ * Return order
+ 
+# Tech Stack
+Backend
+ * Java Spring
+ * Hibernate
+ * Maven
+ * Thymleaf
+ * Mysql
+ Frontend
+ * Bootstrap 
