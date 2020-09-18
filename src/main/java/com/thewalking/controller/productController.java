@@ -3,6 +3,8 @@ package com.thewalking.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -32,7 +34,7 @@ public class productController {
 	@RequestMapping(method = RequestMethod.GET)
     public String list_products(Model model,
     		@Param("q") String q,
-    		@Param("cid") Optional<Integer> cid) { //
+    		@Param("cid") Optional<Integer> cid) { 
         List<Product> listProducts=null;
         if (cid.isPresent()) {
         	listProducts = pService.findByCategoryId(cid.get());
@@ -47,31 +49,11 @@ public class productController {
         return "products";
     }
 	
-//	@RequestMapping(value="/category",method = RequestMethod.GET)
-//    public String list_products_by_category(Model model,
-//    		@Param("category_id") Integer catId) { //Optional<Integer> opCatId
-//        List<Product> listProducts=null;
-//        System.out.println("##########"+catId);
-//        String q="";
-//        if (catId!=null) {
-////        	Integer catId = opCatId.get();
-//        	System.out.println("###" +catId);
-//        	listProducts = pService.findByCategoryId(catId);
-//        }else {
-//        	 listProducts = pService.findAll(q);
-//        }
-//        model.addAttribute("products", listProducts);
-//        List<Category> listCategories = cService.all();
-//    	model.addAttribute("categories", listCategories);
-//        model.addAttribute("q", q);
-//        return "products";
-//    }
-	
 	@RequestMapping(value = "/prod_details", method = RequestMethod.GET)
 	public String product_details(
 	  @Param("id") int id, Model model) {
 		model.addAttribute("product", pService.find(id));
 	    return "product_details";
 	}
-
+	
 }

@@ -6,6 +6,7 @@
 </head>
 <body>
 <a th:href="@{/products}">Products Page</a>
+<p><a th:href="@{/cart}">Cart</a></p>
 <h2>search Products</h2>
 <form th:action="@{/products}">
 	<label for="q">Search</label>
@@ -26,6 +27,9 @@
             <td><span th:text="${product.id}"> Product Id </span></td>
             <td><span th:text="${product.category_id}"> Category Id </span></td>
             <td><span th:text="${product.name}"> Product Name </span></td>
+            <td>
+            	<a th:href="@{/cart(pid=${product.id})}">
+            	<span>Add to cart</span></a></td>
         </tr>
 	    </tbody>
 	</table>

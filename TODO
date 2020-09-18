@@ -1,16 +1,13 @@
 #Done
 #TODO
+User + rest api
+Customer 
+
 3.3.1 product search
 search by category
 
 * add to Cart page on details page
 add product to a cart
-
-#cart
-cart_id
-user_id
-product_id
-
 
 
 #The database design
@@ -48,3 +45,13 @@ cart->order placed->processing->cancel order->processed(shipped)->return order
 
 #questions
 how to handle concurrency
+
+#order table
+order_id
+date
+status
+customer_id
+
+#order items
+order_id
+product_id

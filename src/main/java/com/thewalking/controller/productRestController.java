@@ -15,12 +15,14 @@ import com.thewalking.jpa.ProductService;
 import com.thewalking.model.Product;
 
 @RestController
-@RequestMapping(value="/API/products")
+@RequestMapping(value="/API/products") //  /API/products
 public class productRestController {
 	@Autowired
 	ProductService pService;
-	@GetMapping
-	public  List<Product> findAllProduct() { 
+
+	@GetMapping(value="/all", produces = "application/json")
+	public  List<Product> findAllProduct() {
+		System.out.println("###");
 		return pService.findAll("");
 	}
 	@GetMapping("/find/{id}")
