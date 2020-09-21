@@ -55,3 +55,10 @@ customer_id
 #order items
 order_id
 product_id
+
+
+{
+"id":"1",
+"name":"prod1",
+"category_id":"2"
+}

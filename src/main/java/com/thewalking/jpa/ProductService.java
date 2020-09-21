@@ -28,4 +28,13 @@ public class ProductService {
 		}
 		return p;
 	}
+	public Product update(Product product) {
+		return prodRepo.save(product);
+	}
+	public void deleteById(int id) {
+		prodRepo.deleteById(id);
+	}
+	public Product save(Product product) {
+		return prodRepo.save(product);
+	}
 }
