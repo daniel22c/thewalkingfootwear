@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<a th:href="@{/products}">Products Page</a>
+<h2>display products</h2>
+	<table>
+	    <thead>
+	        <tr>
+	            <th> Product ID </th>
+	            <th> Category Id </th>
+	            <th> Product Name </th>
+	            <th> Product QTY </th>
+	        </tr>
+	    </thead>
+	    <tbody>
+        <tr th:each="entry: ${cart.map}">
+            <td><span th:text="${entry.key.id}"> Product Id </span></td>
+            <td><span th:text="${entry.key.category_id}"> Category Id </span></td>
+            <td> <a th:href="@{/products/prod_details(id=${entry.key.id})}">
+            <span th:text="${entry.key.name}"> Product Name 
+             </span> </a> </td>
+            <td><span th:text="${entry.value}"> Product QTY </span></td>
+        </tr>
+	    </tbody>
+	</table>
+<h2>Payment information</h2>
+<form th:action="@{/order/process_order}">
+	<label for="q">name</label>
+		<input type="text" name="name" th:value="${name}"><br>
+	<label for="q">address</label>
+		<input type="text" name="address" th:value="${address}"><br>
+	<label for="q">Card Number</label>
+		<input type="text" name="cardno" th:value="${cardno}"><br>
+	<label for="q">Zip Code</label>
+		<input type="text" name="zipcode" th:value="${zipcode}"><br>
+	<input type="submit" value="submit">
+</form>
+	
+</body>
+</html>

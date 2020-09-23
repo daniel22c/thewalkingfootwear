@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,15 +29,20 @@ public class productRestController {
 	public  List<Product> findAllProduct() {
 		return pService.findAll("");
 	}
-	@GetMapping(value="/find/{id}", produces = "application/json")
-	public Product findProduct(@PathVariable int id) {
+	@GetMapping(value="/findByCategoryId/{category_id}", produces = "application/json")
+	public List<Product> listByCategory(@PathVariable int category_id) {
+		return pService.findByCategoryId(category_id);
+	}
+	@GetMapping(value="/prod_details/{id}", produces = "application/json")
+	public Product prod_details(@PathVariable int id) {
 		return pService.find(id);
 	}
 	@GetMapping(value= "/find", produces = "application/json")
 	public Product findOne(@RequestParam("id") int id) {
 		return pService.find(id);
 	}
-	@PutMapping(value="/update",produces = "application/json",method=RequestMethod.PUT)
+	
+	@PutMapping(value="/update",produces = "application/json")
 	public Product updateProduct(Product product) {
 		return pService.update(product);
 	}
