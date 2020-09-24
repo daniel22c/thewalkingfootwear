@@ -1,10 +1,13 @@
 package com.thewalking.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
 @Table(name = "categories")
@@ -14,8 +17,8 @@ public class Category implements Serializable {
 	private int id;
 	@Column(name="category_name")
 	private String name;
-//	@OneToMany(orphanRemoval = true, mappedBy = "category", fetch = FetchType.LAZY)
-//	private List<Product> prodList;
+	@OneToMany(mappedBy = "category")
+	private List<Product> prodList;
 	public Category() {
 		
 	}

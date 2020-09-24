@@ -23,8 +23,8 @@ public class OrderItem implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@ManyToOne  //many items to one order
-	@JoinColumn(name="order_id", nullable=false)
+//	@ManyToOne  //many items to one order
+//	@JoinColumn(name="orderItems", nullable=false)
 	private Order order;
 	
 	@Column(nullable = false)

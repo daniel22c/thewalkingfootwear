@@ -21,13 +21,15 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class Order implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id @Column(name="order_id")
-	private String id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 	private int user_id;
 	private int status_id;
+	private String order_uuid;
 	//TODO add payment
 	
-    @OneToMany(mappedBy = "order")
-    private List<OrderItem> orderItems = new ArrayList<OrderItem>();
+//    @OneToMany(mappedBy = "order")
+//    private List<OrderItem> orderItems = new ArrayList<OrderItem>();
 	
     @JsonFormat(pattern = "MM-dd-yyyy HH:mm:ss")
     private LocalDateTime timestamp;
@@ -35,12 +37,13 @@ public class Order implements Serializable{
 	public Order() {
 	}
 
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String string) {
-		this.id = string;
+	public Order(int id, int user_id, int status_id, String order_uuid, LocalDateTime timestamp) {
+		super();
+		this.id = id;
+		this.user_id = user_id;
+		this.status_id = status_id;
+		this.order_uuid = order_uuid;
+		this.timestamp = timestamp;
 	}
 
 	public int getUser_id() {
@@ -71,18 +74,20 @@ public class Order implements Serializable{
 		return serialVersionUID;
 	}
 
-	public Order(String id, int user_id, int status_id, LocalDateTime timestamp) {
-		super();
-		this.id = id;
-		this.user_id = user_id;
-		this.status_id = status_id;
-		this.timestamp = timestamp;
+	public int getId() {
+		return id;
 	}
 
-	@Override
-	public String toString() {
-		return "Order [id=" + id + ", user_id=" + user_id + ", status_id=" + status_id + ", timestamp=" + timestamp
-				+ "]";
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getOrder_uuid() {
+		return order_uuid;
+	}
+
+	public void setOrder_uuid(String order_uuid) {
+		this.order_uuid = order_uuid;
 	}
 	
 }

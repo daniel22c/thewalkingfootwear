@@ -12,6 +12,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 	@Query("SELECT p FROM Product p where CAST(p.id as string) = ?1"
 			+ " or p.name like %?1%")
 	public List<Product> search(String q); 
-	@Query("select p from Product p where p.category_id = ?1")
+	@Query("select p from Product p where p.category.id = ?1")
 	public List<Product> findByCategoryId(int id);
 }

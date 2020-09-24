@@ -1,0 +1,101 @@
+http://localhost:8080/thewalking/API/products/all
+
+
+http://localhost:8080/thewalking/API/products/categories
+
+//post 
+http://localhost:8080/thewalking/API/products/create
+
+{
+    "id": 6,
+    "name": "prod6",
+    "category_id": 2
+}
+
+http://localhost:8080/thewalking/API/products/delete/0
+
+http://localhost:8080/thewalking/API/products/update
+
+{
+        "id": 1,
+        "name": "prod1",
+        "category_id": 2
+    }
+    
+///////category  get
+http://localhost:8080/thewalking/API/categories/all
+
+
+//category post
+{
+        "id": 1,
+        "name": "Lady's shoes"
+    }
+    
+    {
+        "id": 2,
+        "name": "Girl's shoes"
+    }
+    {
+        "id": 3,
+        "name": "Accessories"
+    }
+//category put
+http://localhost:8080/thewalking/API/categories/update
+  {
+        "id": 3,
+        "name": "Accessories"
+    }      
+        
+http://localhost:8080/thewalking/API/categories/delete
+
+//products
+http://localhost:8080/thewalking/API/products/create
+
+{
+        "name": "Running shoe",
+        "category":{"id":1}
+    }
+{
+        "name": "Necklace",
+        "category":{"id":2}
+    }
+//put
+http://localhost:8080/thewalking/API/products/update
+{
+    "id":1,
+        "name": "Very nice lady's shoe",
+        "category":{"id":1}
+    }
+    
+{
+"id":2,
+    "name": "Awesome girl's shoe",
+    "category":{"id":2}
+}
+
+{
+"id":3,
+    "name": "very good necklace",
+    "category":{"id":3}
+}
+
+{
+"id":4,
+    "name": "deletedfdf",
+    "category":{"id":3}
+}
+
+//delete product
+http://localhost:8080/thewalking/API/products/delete/4
+
+//prod details
+http://localhost:8080/thewalking/API/products/prod_details/1
+{
+    "id":1,
+        "name": "Very nice lady's shoe",
+        "category":{"id":1}
+    }
+
+//findbycategory
+http://localhost:8080/thewalking/API/products/findByCategoryId/1

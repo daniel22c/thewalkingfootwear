@@ -3,6 +3,8 @@ package com.thewalking.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,6 +22,11 @@ public class Payment {
 	@Column(name="payment_cardno")
 	private String cardno;
 //	private int order_id;
+	
+	@OneToOne
+	@MapsId
+	Cart cart;
+	
 	public Payment() {}
 	public Payment(int id, String address, String name, String zipcode, String cardno) {
 		super();

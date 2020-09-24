@@ -24,10 +24,13 @@ public class CartService {
 	OrderItemService orderItemService;
 	@Transactional
 	public Order submit_cart_order(Cart cart) {
+		if (cart==null) {
+			return null;
+		}
 		HashMap<Product, Integer> map = (HashMap<Product, Integer>) cart.getMap();
 		Iterator itr = map.entrySet().iterator();
 		Order order = new Order();
-		order.setId((UUID.randomUUID().toString()));
+		order.setOrder_uuid(UUID.randomUUID().toString());
 		while(itr.hasNext()) {
 			Map.Entry element = (Map.Entry) itr.next();
 			Product prod = (Product) element.getKey();
