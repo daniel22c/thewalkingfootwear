@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -25,7 +26,10 @@ public class Product implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="category_id", nullable=false)
 	private Category category;
-
+	
+	@OneToOne
+	@JoinColumn(name="product")
+	private OrderItem orderItem;
 	public Product() {
 	}
 	

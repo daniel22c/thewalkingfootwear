@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -23,13 +24,15 @@ public class OrderItem implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-//	@ManyToOne  //many items to one order
-//	@JoinColumn(name="orderItems", nullable=false)
+	@ManyToOne  //many items to one order
+	@JoinColumn(name="order_id", nullable=false)
 	private Order order;
 	
 	@Column(nullable = false)
 	private int quantity;
 	
+	@OneToOne
+	@JoinColumn(name="product_id", nullable=false)
 	private Product product;
 	public Product getProduct() {
 		return product;

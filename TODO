@@ -41,7 +41,8 @@ log in and memberships
 add pagination
 
 #order status
-cart->order placed->processing->cancel order->processed(shipped)->return order
+cart->checkout->payment->
+status: order placed->processing->cancel order->processed(shipped)->return order
 
 #questions
 how to handle concurrency

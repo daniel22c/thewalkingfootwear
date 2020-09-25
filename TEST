@@ -99,3 +99,33 @@ http://localhost:8080/thewalking/API/products/prod_details/1
 
 //findbycategory
 http://localhost:8080/thewalking/API/products/findByCategoryId/1
+
+//cart
+http://localhost:8080/thewalking/API/cart/submitOrder
+{
+    "items": [
+        {
+            "product": {
+                "id": 1,
+                "name": "aa",
+                "category": {
+                    "id": 1,
+                    "name": "aa"
+                }
+            },
+            "qty": 2
+        },
+        {
+            "product": {
+                "id": 2,
+                "name": "bb",
+                "category": {
+                    "id": 2,
+                    "name": "bb"
+                }
+            },
+            "qty": 3
+        }
+    ]
+}
+

@@ -30,7 +30,6 @@ public class CartService {
 		HashMap<Product, Integer> map = (HashMap<Product, Integer>) cart.getMap();
 		Iterator itr = map.entrySet().iterator();
 		Order order = new Order();
-		order.setOrder_uuid(UUID.randomUUID().toString());
 		while(itr.hasNext()) {
 			Map.Entry element = (Map.Entry) itr.next();
 			Product prod = (Product) element.getKey();
