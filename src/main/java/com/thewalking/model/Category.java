@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -18,6 +19,7 @@ public class Category implements Serializable {
 	@Column(name="category_name")
 	private String name;
 	@OneToMany(mappedBy = "category")
+	@ElementCollection(targetClass=Product.class)
 	private List<Product> prodList;
 	public Category() {
 		

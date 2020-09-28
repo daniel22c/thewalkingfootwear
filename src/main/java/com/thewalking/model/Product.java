@@ -2,6 +2,7 @@ package com.thewalking.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,8 +18,8 @@ import org.springframework.stereotype.Component;
 @Table(name = "products")
 public class Product implements Serializable{
 	private static final long serialVersionUID = 1L;
-	@Id @Column(name="product_id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id @Column(name="product_id", updatable = true, nullable = false)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id;
 	@Column(name="product_name")
 	private String name;
@@ -27,7 +28,7 @@ public class Product implements Serializable{
 	@JoinColumn(name="category_id", nullable=false)
 	private Category category;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="product")
 	private OrderItem orderItem;
 	public Product() {

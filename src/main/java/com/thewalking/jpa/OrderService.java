@@ -25,6 +25,8 @@ public class OrderService {
 		return orderRepo.save(order);
 	}
 	public Order submitOrder(Order order) {
+		order.newOrderUUID();
+		order.newTimeStamp();
 		return orderRepo.save(order);
 		
 	}

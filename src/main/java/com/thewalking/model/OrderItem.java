@@ -6,6 +6,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,20 +20,21 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "orderitems")
-public class OrderItem implements Serializable, Cloneable {
+public class OrderItem implements Serializable{
 	private static final long serialVersionUID = 1L;
-	@Id @Column(name="orderitem_id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id 
+	@Column(name="orderitem_id", updatable = true, nullable = false)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id;
 	
-	@ManyToOne  //many items to one order
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="order_id")
 	private Order order;
 	
 	@Column(nullable = false)
 	private int quantity;
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="product_id", nullable=false)
 	private Product product;
 	public Product getProduct() {
@@ -78,8 +80,5 @@ public class OrderItem implements Serializable, Cloneable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	public Object clone() throws CloneNotSupportedException 
-	{ 
-		return super.clone(); 
-	}
+
 }

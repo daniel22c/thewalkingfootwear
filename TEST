@@ -113,7 +113,7 @@ http://localhost:8080/thewalking/API/cart/submitOrder
                     "name": "Very nice lady's shoe",
                     "category":{"id":1}
                 },
-            "qty": 2
+            "quantity": 2
         },
         {
             "product": {
@@ -121,7 +121,7 @@ http://localhost:8080/thewalking/API/cart/submitOrder
                 "name": "awesome girl's shoe",
                 "category":{"id":2}
             },
-            "qty": 3
+            "quantity": 3
         }
     ]
 , 

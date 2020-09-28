@@ -3,12 +3,16 @@ package com.thewalking.model;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,16 +29,17 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Table(name = "orders")
 public class Order implements Serializable{
 	private static final long serialVersionUID = 1L;
-	@Id @Column(name="order_id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id @Column(name="order_id", updatable = true, nullable = false)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id;
 	private String order_uuid;
-//	@MapsId
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="payment_id")
 	private Payment payment;
-    @OneToMany(mappedBy = "order")
-    private List<OrderItem> orderItems = new ArrayList<OrderItem>();
+	
+    @OneToMany(mappedBy="order",fetch=FetchType.LAZY, cascade = {CascadeType.ALL})
+    @ElementCollection(targetClass=OrderItem.class)
+    private Collection<OrderItem> orderItems = new ArrayList<OrderItem>();
 	
     private LocalDateTime timestamp;
     
@@ -50,11 +55,11 @@ public class Order implements Serializable{
 		this.payment = payment;
 	}
 
-	public List<OrderItem> getOrderItems() {
+	public Collection<OrderItem> getOrderItems() {
 		return orderItems;
 	}
 
-	public void setOrderItems(List<OrderItem> orderItems) {
+	public void setOrderItems(ArrayList<OrderItem> orderItems) {
 		this.orderItems = orderItems;
 	}
 
@@ -84,8 +89,13 @@ public class Order implements Serializable{
 
 	public Order() {
 	}
-
-	public Order(Payment payment, List<OrderItem> orderItems, 
+	public void newOrderUUID() {
+		this.order_uuid = UUID.randomUUID().toString();
+	}
+	public void newTimeStamp() {
+		this.timestamp = LocalDateTime.now();
+	}
+	public Order(Payment payment, ArrayList<OrderItem> orderItems, 
 			String shippingAddress, String shippingZipcode, String shippingName) {
 		super();
 		this.order_uuid = UUID.randomUUID().toString();
