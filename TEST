@@ -141,3 +141,11 @@ http://localhost:8080/thewalking/API/cart/submitOrder
 //delete order
  http://localhost:8080/thewalking/API/orders/delete
 
+//cancel order
+put
+http://localhost:8080/thewalking/API/orders/cancelOrder/49
+//set order as delivered
+http://localhost:8080/thewalking/API/orders/setOrderDelivered/49
+//feedback
+post
+http://localhost:8080/thewalking/API/orders/feedback

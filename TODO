@@ -3,7 +3,8 @@
 exception handling and http status response
 User + rest api
 Customer 
-
+AOP
+email
 3.3.1 product search
 search by category
 

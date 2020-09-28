@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.thewalking.jpa.OrderService;
+import com.thewalking.model.Feedback;
 import com.thewalking.model.Order;
+import com.thewalking.model.OrderStatus;
 import com.thewalking.model.Product;
 
 @CrossOrigin
@@ -25,7 +27,7 @@ public class OrderRestController {
 	@Autowired
 	OrderService orderService;
 	@GetMapping(value="/all", produces = "application/json")
-	public  List<Order> findAllProduct() {
+	public  List<Order> findAllOrders() {
 		return orderService.findAll();
 	}
 	
@@ -46,10 +48,26 @@ public class OrderRestController {
 		return null;
 	}
 	@PutMapping(value="/update",consumes = "application/json" ,produces = "application/json")
-	public Order updateProduct(@RequestBody Order order) {
+	public Order updateOrder(@RequestBody Order order) {
 		return orderService.update(order);
 	}
 	
+	@PutMapping(value="/cancelOrder/{id}",consumes = "application/json" ,produces = "application/json")
+	public Order cancelOrder(@PathVariable int id) {
+		return orderService.cancelOrder(id);
+	}
 	
+	@PutMapping(value="/returnOrder/{id}",consumes = "application/json" ,produces = "application/json")
+	public Order returnOrder(@PathVariable int id) {
+		return orderService.cancelOrder(id);
+	}
+	@PutMapping(value="/setOrderDelivered/{id}",consumes = "application/json" ,produces = "application/json")
+	public Order setOrderDelivered(@PathVariable int id) {
+		return orderService.setOrderStatusToDelivered(id);
+	}
+	@PostMapping(value="/feedback",consumes = "application/json" ,produces = "application/json")
+	public Order returnOrder(@RequestBody Feedback feedback) {
+		return orderService.feedbackOrder(feedback);
+	}
 	
 }

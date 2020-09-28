@@ -4,11 +4,9 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.CascadeType;
-import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -17,13 +15,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 @Entity
 @Table(name = "orders")
@@ -47,7 +44,21 @@ public class Order implements Serializable{
     private String shippingZipcode;
     private String shippingName;
     
-    public Payment getPayment() {
+    @Enumerated(EnumType.STRING)
+    @Column(length = 15)
+    private OrderStatus status;
+    
+    private String feedback;
+    
+    public String getFeedback() {
+		return feedback;
+	}
+
+	public void setFeedback(String feedback) {
+		this.feedback = feedback;
+	}
+
+	public Payment getPayment() {
 		return payment;
 	}
 
@@ -95,6 +106,9 @@ public class Order implements Serializable{
 	public void newTimeStamp() {
 		this.timestamp = LocalDateTime.now();
 	}
+	public void newOrderStatus() {
+		this.status = OrderStatus.SUBMITTED;
+	}
 	public Order(Payment payment, ArrayList<OrderItem> orderItems, 
 			String shippingAddress, String shippingZipcode, String shippingName) {
 		super();
@@ -129,6 +143,14 @@ public class Order implements Serializable{
 
 	public String getOrder_uuid() {
 		return order_uuid;
+	}
+
+	public OrderStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(OrderStatus status) {
+		this.status = status;
 	}
 
 	@Override
