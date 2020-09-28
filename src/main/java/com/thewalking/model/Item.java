@@ -1,7 +1,7 @@
 package com.thewalking.model;
 
 import org.springframework.stereotype.Component;
-public class Item{
+public class Item implements Cloneable{
 	private Product product;
 	private int qty;
 	public Item(){
@@ -31,6 +31,9 @@ public class Item{
 	public String toString() {
 		return "Item [product=" + product + ", qty=" + qty + "]";
 	}
-	
+	public Object clone() throws CloneNotSupportedException 
+	{ 
+		return super.clone(); 
+	}
 	
 }

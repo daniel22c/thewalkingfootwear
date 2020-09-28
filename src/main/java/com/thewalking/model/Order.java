@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,7 +30,7 @@ public class Order implements Serializable{
 	private int id;
 	private String order_uuid;
 //	@MapsId
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="payment_id")
 	private Payment payment;
     @OneToMany(mappedBy = "order")
@@ -84,13 +85,13 @@ public class Order implements Serializable{
 	public Order() {
 	}
 
-	public Order(int id, String order_uuid, Payment payment, List<OrderItem> orderItems, LocalDateTime timestamp,
+	public Order(Payment payment, List<OrderItem> orderItems, 
 			String shippingAddress, String shippingZipcode, String shippingName) {
 		super();
 		this.order_uuid = UUID.randomUUID().toString();
 		this.payment = payment;
 		this.orderItems = orderItems;
-		this.timestamp = timestamp;
+		this.timestamp = LocalDateTime.now();
 		this.shippingAddress = shippingAddress;
 		this.shippingZipcode = shippingZipcode;
 		this.shippingName = shippingName;

@@ -2,6 +2,7 @@ package com.thewalking.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -18,20 +19,20 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "orderitems")
-public class OrderItem implements Serializable {
+public class OrderItem implements Serializable, Cloneable {
 	private static final long serialVersionUID = 1L;
 	@Id @Column(name="orderitem_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@ManyToOne  //many items to one order
-	@JoinColumn(name="order_id", nullable=false)
+	@JoinColumn(name="order_id")
 	private Order order;
 	
 	@Column(nullable = false)
 	private int quantity;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="product_id", nullable=false)
 	private Product product;
 	public Product getProduct() {
@@ -77,5 +78,8 @@ public class OrderItem implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
+	public Object clone() throws CloneNotSupportedException 
+	{ 
+		return super.clone(); 
+	}
 }

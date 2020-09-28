@@ -5,13 +5,16 @@ http://localhost:8080/thewalking/API/products/categories
 
 //post 
 http://localhost:8080/thewalking/API/products/create
-
 {
-    "id": 6,
-    "name": "prod6",
-    "category_id": 2
+	"id":1,
+    "name": "Very nice lady's shoe",
+    "category":{"id":1}
 }
-
+{
+	"id":2,
+    "name": "awesome girl's shoe",
+    "category":{"id":2}
+}
 http://localhost:8080/thewalking/API/products/delete/0
 
 http://localhost:8080/thewalking/API/products/update
@@ -63,10 +66,10 @@ http://localhost:8080/thewalking/API/products/create
 //put
 http://localhost:8080/thewalking/API/products/update
 {
-    "id":1,
-        "name": "Very nice lady's shoe",
-        "category":{"id":1}
-    }
+"id":1,
+    "name": "Very nice lady's shoe",
+    "category":{"id":1}
+}
     
 {
 "id":2,
@@ -92,10 +95,10 @@ http://localhost:8080/thewalking/API/products/delete/4
 //prod details
 http://localhost:8080/thewalking/API/products/prod_details/1
 {
-    "id":1,
-        "name": "Very nice lady's shoe",
-        "category":{"id":1}
-    }
+	"id":1,
+    "name": "Very nice lady's shoe",
+    "category":{"id":1}
+}
 
 //findbycategory
 http://localhost:8080/thewalking/API/products/findByCategoryId/1
@@ -103,29 +106,34 @@ http://localhost:8080/thewalking/API/products/findByCategoryId/1
 //cart
 http://localhost:8080/thewalking/API/cart/submitOrder
 {
-    "items": [
+    "orderitems": [
         {
             "product": {
-                "id": 1,
-                "name": "aa",
-                "category": {
-                    "id": 1,
-                    "name": "aa"
-                }
-            },
+                "id":1,
+                    "name": "Very nice lady's shoe",
+                    "category":{"id":1}
+                },
             "qty": 2
         },
         {
             "product": {
-                "id": 2,
-                "name": "bb",
-                "category": {
-                    "id": 2,
-                    "name": "bb"
-                }
+                "id":2,
+                "name": "awesome girl's shoe",
+                "category":{"id":2}
             },
             "qty": 3
         }
     ]
+, 
+"payment":
+{
+		"paymentAddress":"address",
+		"paymentName":"Daniel",
+		"paymentZipcode":"12345",
+		"cardno":"123445678901234"
+},
+"shippingAddress": "address",
+"shippingZipcode": "12345",
+"shippingName": "Daniel"
 }
 

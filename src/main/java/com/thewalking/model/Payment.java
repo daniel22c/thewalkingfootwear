@@ -2,8 +2,11 @@ package com.thewalking.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -15,15 +18,17 @@ import javax.persistence.Table;
 @Table(name = "payment")
 public class Payment implements Serializable{
 	private static final long serialVersionUID = 1L;
-	@Id @Column(name="payment_id")
+	@Id
+	@Column(name="payment_id", updatable = true, nullable = false)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id;
 	private String paymentAddress;
 	private String paymentName;
 	private String paymentZipcode;
 	private String cardno;
 	
-	@OneToOne
-	@JoinColumn(name="order_id", nullable=false)
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="order_id")
 	Order order;
 	public Payment() {}
 	public Payment(String paymentAddress, String paymentName, String paymentZipcode, String cardno) {
