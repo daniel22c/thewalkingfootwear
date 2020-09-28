@@ -106,7 +106,7 @@ http://localhost:8080/thewalking/API/products/findByCategoryId/1
 //cart
 http://localhost:8080/thewalking/API/cart/submitOrder
 {
-    "orderitems": [
+    "orderItems": [
         {
             "product": {
                 "id":1,
@@ -136,4 +136,8 @@ http://localhost:8080/thewalking/API/cart/submitOrder
 "shippingZipcode": "12345",
 "shippingName": "Daniel"
 }
+
+
+//delete order
+ http://localhost:8080/thewalking/API/orders/delete
 

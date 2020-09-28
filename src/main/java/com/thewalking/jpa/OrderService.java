@@ -2,6 +2,7 @@ package com.thewalking.jpa;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import com.thewalking.model.Item;
 import com.thewalking.model.Order;
 import com.thewalking.model.OrderItem;
 import com.thewalking.model.Payment;
+import com.thewalking.model.Product;
 
 @Service
 public class OrderService {
@@ -23,17 +25,16 @@ public class OrderService {
 		return orderRepo.save(order);
 	}
 	public Order submitOrder(Order order) {
-//		Payment payment = cart.getPayment();
-////		List<OrderItem> cartItems = (List<OrderItem>) cart.getItems();
-//		String shippingAddress =cart.getShippingAddress();
-//		String shippingZipcode = cart.getShippingZipcode();
-//		String shippingName = cart.getShippingName();
-////		List<OrderItem> orderItems = new ArrayList<OrderItem>();
-//		//TODO get address from cart
-//		//TODO clone orderitems to items list
-//		Order order = new Order(payment, cart.getItems(), shippingAddress, shippingZipcode, shippingName);
-//		//set order object and save
 		return orderRepo.save(order);
 		
+	}
+	public void deleteById(int id) {
+		orderRepo.deleteById(id);
+	}
+	public Optional<Order> findById(int id) {
+		return orderRepo.findById(id);
+	}
+	public Order update(Order order) {
+		return orderRepo.save(order);
 	}
 }
